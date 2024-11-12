@@ -1,11 +1,7 @@
 use chrono::{Local, TimeZone};
-use chrono_tz::Asia::Tokyo;
-use chrono_tz::Tz;
 use clap::Parser;
 use colored::*;
 use git2::{BranchType, Repository};
-
-const TZ: Tz = Tokyo;
 
 #[derive(Parser, Debug, Clone)]
 struct Args {
@@ -98,7 +94,7 @@ fn format_commit_time(time: i64) -> String {
     let time = Local
         .timestamp_opt(time, 0)
         .single()
-        .map(|dt| dt.with_timezone(&TZ).format("%Y.%m.%d %H:%M").to_string())
+        .map(|dt| dt.format("%Y.%m.%d %H:%M").to_string())
         .unwrap_or_else(|| "?".to_string());
 
     format!("[{}]", time).blue().to_string()
