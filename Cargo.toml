@@ -1,0 +1,25 @@
+[package]
+name = "gb"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "gb"
+path = "src/main.rs"
+
+[dependencies]
+chrono = "0.4.38"
+chrono-tz = "0.10.0"
+clap = { version = "4.5.20", features = ["derive"] }
+colored = "2.1.0"
+git2 = "0.19.0"
+openssl = { version = "0.10.68", features = ["vendored"] }
+
+[profile.dev]
+debug = false
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
