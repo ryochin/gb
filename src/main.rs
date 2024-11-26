@@ -2,6 +2,7 @@ use chrono::{Local, TimeZone};
 use clap::Parser;
 use colored::*;
 use git2::{BranchType, Repository};
+use regex::Regex;
 
 #[derive(Parser, Debug, Clone)]
 struct Args {
@@ -118,7 +119,7 @@ fn format_branch_name(name: &str, head_name: &str) -> ColoredString {
         name.green()
     } else if is_remote(name) {
         name.red()
-    } else if core_branches.contains(&name) {
+    } else if core_branches.contains(&name) || is_version(name) {
         name.purple()
     } else if low_priority_branch_suffixes
         .iter()
@@ -137,4 +138,12 @@ fn latest_commit_message(branch: &git2::Branch) -> Option<String> {
 
 fn is_remote(name: &str) -> bool {
     name.starts_with("origin/")
+}
+
+fn is_version(name: &str) -> bool {
+    let pattern = r"(?i)^v\d+";
+
+    Regex::new(pattern)
+        .map(|re| re.is_match(name))
+        .unwrap_or(false)
 }
