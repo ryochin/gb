@@ -7,6 +7,16 @@ A Tiny tool for displaying your git branches nicely.
 
 ![screenshot](https://raw.githubusercontent.com/ryochin/gb/main/screenshot.png)
 
+Installation
+------------
+
+```sh
+brew tap ryochin/tap
+brew install gb
+```
+
+Or download manually from [Releases](https://github.com/ryochin/gb/releases) page.
+
 Usage
 -----
 
