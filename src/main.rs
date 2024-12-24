@@ -18,12 +18,21 @@ struct Args {
     #[clap(short = 'v', long)]
     verbose: bool,
 
+    /// Show Version
+    #[clap(short = 'V', long)]
+    version: bool,
+
     // Path
     path: Option<String>,
 }
 
 fn main() -> Result<(), git2::Error> {
     let args = Args::parse();
+
+    if args.version {
+        println!(env!("CARGO_PKG_VERSION"));
+        return Ok(());
+    }
 
     let path = args.path.unwrap_or_else(|| ".".to_string());
 
