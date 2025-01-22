@@ -14,6 +14,10 @@ struct Args {
     #[clap(short = 'a', long)]
     show_all: bool,
 
+    /// Show & Sort by Author time instead of Commit time
+    #[clap(short = 'A', long)]
+    show_author_time: bool,
+
     /// Verbose output
     #[clap(short = 'v', long)]
     verbose: bool,
@@ -59,7 +63,12 @@ fn main() -> Result<(), git2::Error> {
             let (branch, _) = branch.ok()?;
             let name = branch.name().ok()??.to_string();
             let commit = branch.get().peel_to_commit().ok()?;
-            let time = commit.time().seconds();
+            let time = if args.show_author_time {
+                commit.author().when().seconds()
+            } else {
+                commit.time().seconds()
+            };
+            commit.author().when().seconds();
             Some((branch, name, time))
         })
         .collect();

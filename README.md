@@ -27,10 +27,12 @@ Arguments:
   [PATH]
 
 Options:
-  -r, --show-remote  Show remote branches
-  -a, --show-all     Show all (local & remote) branches
-  -v, --verbose      Verbose output
-  -h, --help         Print help
+  -r, --show-remote       Show remote branches
+  -a, --show-all          Show all (both local & remote) branches
+  -A, --show-author-time  Show Author time instead of Commit time
+  -v, --verbose           Verbose output
+  -V, --version           Show Version
+  -h, --help              Print help
 ```
 
 Ref.
