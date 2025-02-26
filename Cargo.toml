@@ -19,7 +19,8 @@ regex = "1.11.1"
 debug = false
 
 [profile.release]
-lto = true
+lto = "fat"
 codegen-units = 1
 panic = "abort"
-strip = true
+strip = "debuginfo"
+opt-level = 3
