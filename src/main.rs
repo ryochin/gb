@@ -131,7 +131,7 @@ fn current_mark(name: &str, head_name: &str) -> String {
 
 fn format_branch_name(name: &str, head_name: &str) -> ColoredString {
     let core_branches: Vec<&str> = vec!["master", "main", "develop", "test", "demo", "release"];
-    let low_priority_branch_suffixes: Vec<&str> = vec!["old", "obs", "nouse", "merged"];
+    let low_priority_branch_suffixes: Vec<&str> = vec!["old", "obs", "nouse", "no-use", "merged"];
 
     if name == head_name {
         name.green()
